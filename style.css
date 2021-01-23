@@ -18,19 +18,19 @@ body{
 }
 
 div:nth-child(odd) {
-    background-color: #b7e8ff; 
+    background-color: #346b1e; 
 }
 div{
     justify-content: center;
     border: solid 2px;
-    border-color: rgb(255, 255, 255);
+    border-color: rgb(15, 133, 0);
 }
 h1,p{
     text-align: center;
-    color:coral;
+    color:rgb(255, 255, 255);
 }
 p:nth-child(odd) {
-    color: #66d4ff; 
+    color: rgb(255, 218, 56);
 }
 #canvas{
     /*background-color: aliceblue;*/
@@ -44,6 +44,7 @@ p:nth-child(odd) {
     text-align: center;
     margin: 0;
     padding: 0;
+    display: inline-flex;
 }
 
 #flagLeft{
