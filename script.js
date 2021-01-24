@@ -4,13 +4,15 @@ window.addEventListener('load', function(){
     var partieCentre = document.getElementById('flagCentre');
     var partieDroite = document.getElementById('flagRight');
     
-    var palette = ['green','red','white','blue'];
-
+    var palette = ['green','red','white','blue'];//palette par défaut
+    var paletteColorsByFlag = ['paletteFrance','paletteBelgique','paletteAllemagne','paletteHolland'];
     var paletteFrance = ['green','red','white','blue'];
     var paletteBelgique=['orange','red','yellow','black'];
     var paletteTchad=['orange','red','yellow','blue'];
     var paletteAllemagne=['green','red','black','yellow'];
     var paletteHolland=['purple','red','white','blue'];
+    var drapeaux = ['blue/white/red', 'black/yellow/red','red/yellow/blue','black,red,yellow'];
+    var pays = ['France','Belgique','Allemagne','Hollande'];
 
     partieGauche.addEventListener('click', changeCouleur);
     partieCentre.addEventListener('click', changeCouleur);
@@ -18,6 +20,13 @@ window.addEventListener('load', function(){
     
     
     var nextColor=palette[0];
+    function changeCouleur(){
+        this.style.backgroundColor = nextColor;
+        updateColor();
+        compteurTour;
+        console.log(compteurTour());
+            
+    }
     function updateColor(){
 
         if(nextColor==palette[0]){
@@ -38,16 +47,17 @@ window.addEventListener('load', function(){
             return i++;
         }
     }
-    var compteurTour=compteurClick();
-    var compteurTour2=compteurClick();
-
-    function changeCouleur(){
-        this.style.backgroundColor = nextColor;
-        updateColor();
-        compteurTour;
-        console.log(compteurTour());
-            
+    function compteurScore(){
+        var i=0;
+        return function(){
+            return i++;
+        }
     }
+    var compteurTour=compteurClick();
+    var compteScoreActuel=compteurScore();
+    
+
+
 
     function isFlagValidFrance(){
 
@@ -123,12 +133,8 @@ window.addEventListener('load', function(){
         partieCentre.style.backgroundColor==='red'&&
         partieDroite.style.backgroundColor==='yellow'
             ){
-            console.log(' Fin');
-            changerDrapeauHolland();
-            
-
-        }else{
-            
+            changerDrapeauHolland();                    
+        }else{                   
         }
     }
     function isFlagValidHolland(){
@@ -139,47 +145,24 @@ window.addEventListener('load', function(){
         partieDroite.style.backgroundColor==='blue'
             ){
             console.log(' Fin');
-            changerDrapeauHolland();
-            
+            changerDrapeauFrance();       
 
         }else{
             
         }
     }
-
-    /*
-    ////Factorisation des methodess changement drapeaux
-    var drapeaux = ['blue/white/red', 'black/red/yellow', 'blue/yellow/red'];
-    var pays = ['France','Belgique','Tchad','Hollande','Allemagne'];
-    function isFlagValid(){
-
-        if(partieGauche.style.backgroundColor==='blue' && 
+    function isLASTFLAGVALID(){
+        if( partieGauche.style.backgroundColor==='red' && 
             partieCentre.style.backgroundColor==='white'&&
-            partieDroite.style.backgroundColor==='red'
+            partieDroite.style.backgroundColor==='blue'
             ){
-            alert('Couleur trouvée');
-            changerDrapeau();
-            
-
-        }else{
-            
-        }
+                console.log(' Fin');
+                score++;
+                document.getElementById('spanRight').textContent = "Score : "+score;
+                
+            }
+        
     }
-    function changerDrapeau(){
-        if(isFlagValid){
-           
-            palette=paletteTchad;
-            document.getElementById('titreh1').textContent='';
-            nextColor=palette[0];
-            partieGauche.style.backgroundColor=palette[0];
-            partieCentre.style.backgroundColor=palette[1];
-            partieDroite.style.backgroundColor=palette[2];
-
-        }
-
-    }
-*/
-
 
     ////////////////CHANGEMENT DRAPEAUX APRES VERIFICATIONS
     var validationFrance =document.getElementById('valider');
@@ -187,6 +170,8 @@ window.addEventListener('load', function(){
     var validationTchad =document.getElementById('valider');
     var validationAllemagne =document.getElementById('valider');
     var validationHolland =document.getElementById('valider');
+    //à placer sur le dernier Drapeau 
+    var validationScoreFinal=document.getElementById('valider');
 
     validationFrance.addEventListener('click', isFlagValidFrance);
     validationBelgique.addEventListener('click', isFlagValidBelgique);
@@ -194,8 +179,15 @@ window.addEventListener('load', function(){
     validationAllemagne.addEventListener('click', isFlagValidAllemagne);
     validationHolland.addEventListener('click', isFlagValidHolland);
 
+    validationScoreFinal.addEventListener('click', isLASTFLAGVALID);
+    
+    var score=0;
+    var level=1;
     function changerDrapeauBelgique(){
-        if(isFlagValidFrance){
+        ++score;
+        ++level;
+        
+
            
                 palette=paletteBelgique;
                 document.getElementById('titreh1').textContent='Belgique';
@@ -204,12 +196,17 @@ window.addEventListener('load', function(){
                 partieCentre.style.backgroundColor=palette[1];
                 partieDroite.style.backgroundColor=palette[2];
 
-        }
+                document.getElementById('spanRight').textContent = "Score : "+score;                  
+                document.getElementById('spanLeft').textContent = "Level "+level +'/'+pays.length;
+
+
 
     }
 
     function changerDrapeauTchad(){
-        if(isFlagValidBelgique){
+        ++score;
+        ++level;
+
            
             palette=paletteTchad;
             document.getElementById('titreh1').textContent='Tchad';
@@ -218,12 +215,29 @@ window.addEventListener('load', function(){
             partieCentre.style.backgroundColor=palette[1];
             partieDroite.style.backgroundColor=palette[2];
 
-        }
+
+            document.getElementById('spanRight').textContent = "Score : "+score;                  
+            document.getElementById('spanLeft').textContent = "Level "+level +'/'+pays.length;
+
+
 
     }
     function changerDrapeauAllemagne(){
-        if(isFlagValidBelgique){
-           
+        ++score;
+        ++level;
+
+            ////////////////Rotation de la Div Flag via css
+            document.getElementById('flags').style.display='inline-grid';
+            document.getElementById('flags').style.width= '-webkit-fill-available';
+            partieGauche.style.height='50px';
+            partieGauche.style.width='90%';
+
+            partieCentre.style.height='50px';
+            partieCentre.style.width='90%';
+
+            partieDroite.style.height='50px';
+            partieDroite.style.width='90%';
+            ///////////////////////////////////////////////////
             palette=paletteAllemagne;
             document.getElementById('titreh1').textContent='Allemagne';
             nextColor=palette[0];
@@ -231,11 +245,18 @@ window.addEventListener('load', function(){
             partieCentre.style.backgroundColor=palette[1];
             partieDroite.style.backgroundColor=palette[2];
 
-        }
+
+
+            document.getElementById('spanRight').textContent = "Score : "+score;                  
+            document.getElementById('spanLeft').textContent = "Level "+level +'/'+pays.length;
+
+
 
     }
     function changerDrapeauHolland(){
-        if(isFlagValidBelgique){
+        ++score;
+        ++level;
+
            
             palette=paletteHolland;
             document.getElementById('titreh1').textContent='Pays-Bas';
@@ -244,12 +265,29 @@ window.addEventListener('load', function(){
             partieCentre.style.backgroundColor=palette[1];
             partieDroite.style.backgroundColor=palette[2];
 
-        }
+            
+            document.getElementById('spanRight').textContent = "Score : "+score;                  
+            document.getElementById('spanLeft').textContent = "Level "+level +'/'+pays.length;
 
     }
 
     
 
+    //////////////////////////////////Fonction Chrono
+    var seconde = 0;
+    var minute = 0;
+    var heure = 0;
+    function chrono(){
+        if (seconde<59) {
+            seconde ++;
+        }else{
+            seconde =0;
+            minute++;
+        }
+        document.getElementById('spanCentre').textContent = heure+':'+minute+':'+ seconde;
+    }setInterval(chrono, 1000);
+
+ 
 
     
 
