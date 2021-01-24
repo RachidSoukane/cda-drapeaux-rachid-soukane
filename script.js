@@ -22,6 +22,7 @@ window.addEventListener('load', function(){
     var nextColor=palette[0];
     function changeCouleur(){
         this.style.backgroundColor = nextColor;
+        verificationDrapeauSansBtnValider();
         updateColor();
         compteurTour;
         console.log(compteurTour());
@@ -164,6 +165,7 @@ window.addEventListener('load', function(){
         
     }
 
+    /*
     ////////////////CHANGEMENT DRAPEAUX APRES VERIFICATIONS
     var validationFrance =document.getElementById('valider');
     var validationBelgique =document.getElementById('valider');
@@ -180,15 +182,23 @@ window.addEventListener('load', function(){
     validationHolland.addEventListener('click', isFlagValidHolland);
 
     validationScoreFinal.addEventListener('click', isLASTFLAGVALID);
+    */
+   function verificationDrapeauSansBtnValider(){
+    if(level ==1){isFlagValidFrance();}
+    if(level ==2){isFlagValidBelgique();}
+    if(level ==3){isFlagValidAllemagne();}
+    if(level ==4){isFlagValidHolland();isLASTFLAGVALID();}
     
+    else{console.log('Erreur aucun des cas level n\'est soulevé');}
+
+}
+
+
     var score=0;
     var level=1;
     function changerDrapeauBelgique(){
         ++score;
         ++level;
-        
-
-           
                 palette=paletteBelgique;
                 document.getElementById('titreh1').textContent='Belgique';
                 nextColor=palette[0];
@@ -198,7 +208,6 @@ window.addEventListener('load', function(){
 
                 document.getElementById('spanRight').textContent = "Score : "+score;                  
                 document.getElementById('spanLeft').textContent = "Level "+level +'/'+pays.length;
-
 
 
     }
@@ -288,7 +297,7 @@ window.addEventListener('load', function(){
     }setInterval(chrono, 1000);
 
  
-
+    
     
 
  });
