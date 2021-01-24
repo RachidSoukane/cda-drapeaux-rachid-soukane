@@ -45,6 +45,7 @@ p:nth-child(odd) {
     margin: 0;
     padding: 0;
     display: inline-flex;
+    width: -webkit-fill-available;
 }
 
 #flagLeft{
@@ -52,18 +53,21 @@ p:nth-child(odd) {
     width: 32%;
     margin: 0;
     padding: 0;
+    height: fit-content;
 }
 #flagCentre{
     background-color: #ff6060;
     width: 32%;
     margin: 0;
     padding: 0;
+    height: fit-content;
 }
 #flagRight{
     background-color: #00fa2a;
     width: 32%;
     margin: 0;
     padding: 0;
+    height: fit-content;
 }
 
 @media only screen and (max-width: 407px) {
@@ -81,3 +85,15 @@ p:nth-child(odd) {
 #validation{
     text-align: center;
 }
+#enTete{
+    text-align-last: justify;
+    color: aliceblue;
+}
+@font-face {
+    font-family: fontTimer;
+    src: url(Open_24_Display_St.ttf);
+  }
+  #spanCentre{
+    font-family: fontTimer;
+    font-size: large;
+  }
