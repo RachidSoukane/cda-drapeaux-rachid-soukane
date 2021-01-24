@@ -6,32 +6,59 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div id="enTete">
-        <span id="spanLeft">Level 1/4</span>
-        <span id="spanCentre">timer0009</span>
-        <span id="spanRight">Score : 0</span>
-    </div>
-    <h1 id="titreh1"> France</h1>
-    <div>
-        
-        <p class="para">Retrouvez le Drapeau</p>
-        
-    </div>
-    <div id="flags">
+<body id="masqueMoi">
+    <div id="Jeu">
+        <div id="enTete">
+            <span id="spanLeft">Level 1/4</span>
+            <span id="spanCentre">TIMER</span>
+            <span id="spanRight">Score : 0</span>
+        </div>
+        <h1 id="titreh1"> France</h1>
+        <div>
+            
+            <p class="para">Retrouvez le Drapeau</p>
+            
+        </div>
+        <div id="flags">
+    
+            <canvas id="flagLeft"></canvas>
+            <canvas id="flagCentre"></canvas>
+            <canvas id="flagRight"></canvas>
+         
+        </div>
+        <p id="cook">Emplacement Cookie</p>
 
-        <canvas id="flagLeft"></canvas>
-        <canvas id="flagCentre"></canvas>
-        <canvas id="flagRight"></canvas>
-     
+
     </div>
-    <p id="cook">Emplacement Cookie</p>
-    <div id="validation">
-        <button id="valider"><p id="p1">Valider</p></button>
-        
+    <div id="popup">
+        <div class="button_container">
+            <button id="button_modal">
+                <p id="p1">Cliquez ici pour Démarrerr</p>
+            </button>
+            <div id="modal">
+                <h1>Hello World!</h1>
+                <h3>Bienvenue dans ce jeu!</h3>
+                <p style="font-size: 18px;">Le but du jeu est de valider<br>
+                    chaque niveau en trouvant les<br>
+                    les bonnes couleurs de chaque<br>
+                    drapeau, le tout le plus <br>
+                    rapidement possible, prêt ?<br>
+                    <br>
+                    <br>
+                    <strong>Partez!</strong>
+    
+    
+                </p>
+            </div>
     </div>
+
     <script src="script.js"></script>
     
     
 </body>
+
+                
+    
+    
+</div>
 </html>

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html{
     margin: 0;
     padding: 0;
@@ -5,7 +6,8 @@ html{
     justify-content: center;
     align-items: center;
 
-   background-image: url("seamless.jpg") ;
+   /*background-image: url("seamless.jpg") ;*/
+   background-color: #353b48;
    
    background-size: 10%;
    background-repeat: repeat;
@@ -13,25 +15,23 @@ html{
 body{
    /* flex-direction: column;*/
     width: 50%;
-
     
 }
 
-div:nth-child(odd) {
-    background-color: #346b1e; 
-}
+
 div{
     justify-content: center;
-    border: solid 2px;
-    border-color: rgb(15, 133, 0);
+    border: 5px;
+    border-radius: 5px;
+    border-color: #610600;
+    color: #ffffff;
 }
-h1,p{
+h1,p, h3{
     text-align: center;
-    color:rgb(255, 255, 255);
+    
+    color: #ffffff;
 }
-p:nth-child(odd) {
-    color: rgb(255, 218, 56);
-}
+
 #canvas{
     /*background-color: aliceblue;*/
     width:100%;
@@ -39,6 +39,9 @@ p:nth-child(odd) {
     display: flex;
     margin: 0;
     padding: 0;
+    border: 5px;
+    border-radius: 5px;
+    border-color: #192a56;
 }
 #flags{
     text-align: center;
@@ -56,14 +59,14 @@ p:nth-child(odd) {
     height: fit-content;
 }
 #flagCentre{
-    background-color: #ff6060;
+    background-color: orange;
     width: 32%;
     margin: 0;
     padding: 0;
     height: fit-content;
 }
 #flagRight{
-    background-color: #00fa2a;
+    background-color: orchid;
     width: 32%;
     margin: 0;
     padding: 0;
@@ -82,12 +85,10 @@ p:nth-child(odd) {
     font-size: 8px;
   }
 }
-#validation{
-    text-align: center;
-}
+
 #enTete{
     text-align-last: justify;
-    color: aliceblue;
+
 }
 @font-face {
     font-family: fontTimer;
@@ -95,5 +96,37 @@ p:nth-child(odd) {
   }
   #spanCentre{
     font-family: fontTimer;
-    font-size: large;
+    font-size: 25px;
   }
+#popup{
+    backface-visibility: hidden;
+    color:#0b00a3;
+}
+.button_container{
+    text-align: center;
+    margin: 0 auto;
+    
+    
+    
+}
+ #button_modal{
+     height: 50px;
+     width: 100%;
+     background-color: #fd9644;
+     color: #4b6584;
+     font-family: Arial, Helvetica, sans-serif;
+     border: none;
+     cursor: pointer;
+ }
+ #p1{
+    color: #ffffff;
+ }
+ #modal{
+    height: 406px;
+    width: 100%;
+    background-color: #e1b12c;
+    text-align-last: center;
+    border-radius: 10px;
+    margin-top: -411px;
+
+ }
