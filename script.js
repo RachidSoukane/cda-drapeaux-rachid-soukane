@@ -357,12 +357,19 @@
                 ++level;
                 ++niveau;
                 
-                
+                var resultatTemps =compteurTour;
                     JeuTermine=true;
                     stopChrono();
                     document.getElementById('popup2').style.display='block';
-                
+                    var FinalScore= document.getElementById('ScoreFinale');
+                    var FinalTime= document.getElementById('DureeTotale');
+                    var FinalClic= document.getElementById('TotalClic');
 
+                    var NombreClicMinimum =38;
+                    var scoreTotal = ((NombreClicMinimum)/resultatTemps())*100;
+                    FinalScore.textContent="Score :" + scoreTotal + "\%";
+                    FinalTime.textContent="Durée :"+horlogeTimer+' secondes';
+                    FinalClic.textContent="Nombre de Clics :"+(resultatTemps());
                     
                     palette=paletteHolland;
                     document.getElementById('titreh1').textContent="Merci d'avoir Joué";
@@ -374,7 +381,7 @@
                     //document.getElementById('timer').textContent='score';
                     partieGauche.style.width='';
 
-                    var resultatTemps =compteurTour;
+                    
                     //Message dans la fenetre principale en fonction du score 
                     if(resultatTemps=37){
                         document.getElementById('flags').textContent=
@@ -433,6 +440,7 @@
             
          //Bouton popup commencer/////////////////////////////////////////////////////
          document.getElementById('button_modal').addEventListener('click',openModal);
+         document.getElementById('p2').addEventListener('click',openModal);
          var JeuTermine=false;
          function openModal(){
             document.getElementById('popup').style.marginTop='-800px';
