@@ -84,7 +84,7 @@ window.addEventListener('load', function(){
                partieCentre.style.backgroundColor==='white'&&
                partieDroite.style.backgroundColor==='red'){
                 console.log('Couleur trouvée');
-        
+                lireSon();
                 changerDrapeauBelgique();
                 
 
@@ -173,6 +173,10 @@ window.addEventListener('load', function(){
                 
             }
         }
+        ///////////Verifications sur Pologne et Tcheque Dessiner
+        
+
+
         function isLASTFLAGVALID(){
             if( partieGauche.style.backgroundColor==='red' && 
                 partieCentre.style.backgroundColor==='white'&&
@@ -187,7 +191,7 @@ window.addEventListener('load', function(){
         }
 
        function verificationDrapeauSansBtnValider(){
-        if(level ==1){setInterval(isFlagValidFrance,4000);}
+        if(level ==1){setInterval(isFlagValidFrance,4000); }
         if(level ==2){setInterval(isFlagValidBelgique, 4000);}
         if(level ==3){setInterval(isFlagValidAllemagne,4000);}
         if(level ==4){setInterval(isFlagValidHolland,4000);}
@@ -334,7 +338,18 @@ window.addEventListener('load', function(){
         ctx.lineTo(275, 25);
         ctx.fillStyle = 'red'; 
         ctx.fill();
-        
+    ///////////////////////////////////////////////////////////////////////////////
+    
+    //Fonction pour lire le son à la validation d'un drapeau
+    function lireSon()
+        {
+            sonValidation=document.getElementById('gestionSon');
+            //sonValidation.type="audio/wave";
+            //soundfile=(libsoundWAV[numstyle])?libsoundWAV[numstyle]:"toto.wav"
+            //sonValidation.src="UIAlert_Notification.wav";
+            //sonValidation.load();
+            sonValidation.play();
+        }
         
 
      });
