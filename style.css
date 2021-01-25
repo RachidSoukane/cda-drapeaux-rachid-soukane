@@ -14,10 +14,9 @@ html{
 }
 body{
    /* flex-direction: column;*/
-    width: 50%;
+   width: 80%;
     
 }
-
 
 div{
     justify-content: center;
@@ -28,7 +27,6 @@ div{
 }
 h1,p, h3{
     text-align: center;
-    
     color: #ffffff;
 }
 
@@ -73,7 +71,12 @@ h1,p, h3{
     height: fit-content;
 }
 
-
+#Jeu{
+  border: solid;
+  border-radius: 20px;
+  border-color: #92b1ff;
+  background-color: #6b5b95;
+}
 
 #enTete{
     text-align-last: center;
@@ -94,9 +97,7 @@ h1,p, h3{
 .button_container{
     text-align: center;
     margin: 0 auto;
-    
-    
-    
+
 }
  #button_modal{
      height: 50px;
@@ -109,6 +110,7 @@ h1,p, h3{
  }
  #p1{
     color: #ffffff;
+    margin-top: 3px;
  }
  #modal{
     height: 453px;
@@ -124,6 +126,9 @@ h1,p, h3{
     border-radius: 5px;
     color: antiquewhite;
 
+ }
+ #musicPlayer{
+  display: grid;
  }
  #timer{
     text-align-last: center;
@@ -141,18 +146,18 @@ h1,p, h3{
       font-size: 8px;
     }
     #modal {
-      height: 450px;
+      height: 486px;
       width: 100%;
       background-color: #e1b12c;
       text-align-last: center;
       border-radius: 10px;
-      margin-top: -356px;
+      margin-top: -500px;
   }
   }
   @media only screen and (max-width: 769px) {
       /* For mobile phones: */
       #flagLeft, #flagCenter, #flagRight {
-        width: 22%;
+        width: 33%;
       }
       h1{
         font-size: 29px;
@@ -161,12 +166,12 @@ h1,p, h3{
         font-size: 18px;
       }
       #modal {
-          height: 453px;
-          width: 100%;
-          background-color: #e1b12c;
-          text-align-last: center;
-          border-radius: 10px;
-          margin-top: -460px;
+        height: 486px;
+        width: 100%;
+        background-color: #e1b12c;
+        text-align-last: center;
+        border-radius: 10px;
+        margin-top: -500px;
     }
   
   }
