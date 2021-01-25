@@ -79,9 +79,7 @@
                 document.getElementById('spanLeft').textContent = "Niveau "+niveau +'/'+pays.length;
                 verificationDrapeauDessiner();
                 updateDessin();
-                
-                
-                    
+  
             }
             function updateDessin(){                          
 
@@ -246,7 +244,7 @@
             
             else{console.log('Vérification sans Bouton valider est active');}
             }
-            //Suite de la fonction de Vérification mais pour les deux niveaux suivants
+            //Suite de la fonction de Vérification mais pour les deux nouveaux Drapeaux Polonais et Tcheques
             function verificationDrapeauDessiner(){
 
                 if(level ==5){setInterval(isFlagValidPologne,4000);}
@@ -358,10 +356,14 @@
                 ++score;
                 ++level;
                 ++niveau;
-      
+                
+                
                     JeuTermine=true;
                     stopChrono();
+                    document.getElementById('popup2').style.display='block';
+                
 
+                    
                     palette=paletteHolland;
                     document.getElementById('titreh1').textContent="Merci d'avoir Joué";
                     ////////////////Rotation de la Div Flag via css
@@ -372,13 +374,17 @@
                     //document.getElementById('timer').textContent='score';
                     partieGauche.style.width='';
 
+                    var resultatTemps =compteurTour;
                     //Message dans la fenetre principale en fonction du score 
-                    if(compteurTour=='37'){
-                        document.getElementById('flags').textContent="Bravo vous avez atteint le Score Maximum en 37 clics";
+                    if(resultatTemps=37){
+                        document.getElementById('flags').textContent=
+                        "Bravo vous avez atteint"+
+                        "\n le Score Maximum en 37 clics";
 
                     }else{
                         document.getElementById('flags').textContent="peu mieux faire";
                     }
+                    
 
                     partieCentre.style.height='';
                     partieCentre.style.width='';
@@ -390,7 +396,14 @@
                     partieCentre.style.backgroundColor=palette[0];
                     partieDroite.style.backgroundColor=palette[0];
 
+                    
+
             }
+
+
+
+
+            
 
             //////////////////////////////////Fonction Chrono/////////////////////////////////////////////
             var horlogeTimer;
