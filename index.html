@@ -9,20 +9,17 @@
 <body id="masqueMoi">
     <div id="Jeu">
         <div id="enTete">
-            <span id="spanLeft">Level 1/4</span>
-            
+            <span id="spanLeft">Level 1/4</span>            
             <span id="spanRight">Nombre de clics : 0</span>
         </div>
         <h1 id="titreh1"> France</h1>
         <div id="timer">                 
             <span id="spanCentre"><p class="para">TIMER</p></span>         
         </div>
-        <div id="flags">
-    
+        <div id="flags">    
             <canvas id="flagLeft"></canvas>
             <canvas id="flagCentre"></canvas>
-            <canvas id="flagRight"></canvas>
-         
+            <canvas id="flagRight"></canvas>         
         </div>
         <p id="cook">Emplacement Cookie</p>
         <audio id="demo" src="hymne-national-francais.mp3"></audio>
@@ -31,9 +28,7 @@
           <button class="music" onclick="document.getElementById('demo').pause()">Pause la musique</button>
           <button class="music" onclick="document.getElementById('demo').volume+=0.1"> Volume +</button>
           <button class="music" onclick="document.getElementById('demo').volume-=0.1"> Volume -</button>
-        </div> 
-
-
+        </div>
     </div>
     <div id="popup">
         <div class="button_container">
@@ -50,15 +45,12 @@
                     rapidement possible, prêt ?<br>
                     <br>
                     <br>
-                    <strong>Partez!</strong>
-    
-    
+                    <strong>Partez!</strong>    
                 </p>
             </div>
     </div>
     <div id="popup2">
-        <div class="button_container2">
-            
+        <div class="button_container2">            
             <div id="modal2">
                 <h1>Bien joué!</h1>
                 <h3>Vous avez complété tous les Drapeaux!</h3>
@@ -70,26 +62,13 @@
                     <br><p id="TotalClic">NB Clic</p>
                     <br>
                     <br>
-                    <strong>Passez au niveau suivant!</strong>
-    
-    
+                    <strong>Passez au niveau suivant!</strong>    
                 </p>
             </div>
-            <button id="button_modal2">
-                <p id="p2">Next Level</p>
-            </button>
+            <input id="button_modal2 p2" type="button" OnClick="javascript:window.location.reload()" value="Recommencer">
     </div>
-
-
-    <audio id="gestionSon" src="applause.wav"></audio>
-
-    <script src="script.js"></script>
-    
-    
-</body>
-
-                
-    
-    
+    <audio id="applause" src="applause.wav"></audio>
+    <script src="script.js"></script>    
+</body>  
 </div>
 </html>
