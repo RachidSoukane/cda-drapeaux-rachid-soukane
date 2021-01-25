@@ -3,21 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>cda-drapeaux-rachid-soukane</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body id="masqueMoi">
     <div id="Jeu">
         <div id="enTete">
-            <span id="spanLeft">Level 1/4</span>
-            <span id="spanCentre">TIMER</span>
-            <span id="spanRight">Score : 0</span>
+            <span id="spanLeft">Level 1/6</span>
+            
+            <span id="spanRight">Nombre de clics : 0</span>
         </div>
         <h1 id="titreh1"> France</h1>
-        <div>
-            
-            <p class="para">Retrouvez le Drapeau</p>
-            
+        <div id="timer">                 
+            <span id="spanCentre"><p class="para">TIMER</p></span>         
         </div>
         <div id="flags">
     
@@ -27,6 +25,13 @@
          
         </div>
         <p id="cook">Emplacement Cookie</p>
+        <audio id="demo" src="hymne-national-francais.mp3"></audio>
+        <div id="musicPlayer">
+          <button class="music" onclick="document.getElementById('demo').play()">Play la musique </button>
+          <button class="music" onclick="document.getElementById('demo').pause()">Pause la musique</button>
+          <button class="music" onclick="document.getElementById('demo').volume+=0.1"> Volume +</button>
+          <button class="music" onclick="document.getElementById('demo').volume-=0.1"> Volume -</button>
+        </div> 
 
 
     </div>
@@ -51,7 +56,9 @@
                 </p>
             </div>
     </div>
-    <audio id="gestionSon" src="UIAlert_Notification.wav"></audio>
+
+
+    <audio id="gestionSon" src="applause.wav"></audio>
 
     <script src="script.js"></script>
     
