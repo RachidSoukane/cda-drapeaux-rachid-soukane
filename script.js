@@ -6,18 +6,19 @@ window.addEventListener('load', function(){
     //les 3 canvas ci dessous pour dessiner les Drapeaux Polonais et Tcheques(dÃ©sactivÃ©s)
          
     //Variables stockant differentes couleurs pour chaque pays
-    var palette = ['black','red','white','blue'];//palette par défaut
+    var palette = ['blue','red','orange','white'];//palette par défaut
     var nextColor=palette[0];
+    document.getElementById('RepTcheque').display="none";//on masque la vue du Drapeau RepTcheque
 
     var paletteFrance = ['black','red','white','blue'];
     var paletteBelgique=['orange','red','yellow','black'];
-    var paletteAllemagne=['green','red','black','yellow'];
+    var paletteAllemagne=['white','red','black','yellow'];
     var paletteHolland=['green','red','white','blue'];
     var palettePologne=['green','blue','white','red'];
     var paletteTcheque=['black','blue','white','red'];
     var pays = ['France','Belgique','Allemagne','Hollande','Pologne'];
     //var pays = ['France','Belgique','Allemagne','Hollande','Pologne','Tcheque']; //Etape9 sera rÃ©activÃ©e lorsque le dessin des drapeaux sera fonctionnel
-    var score=0;
+    var NbdeClic=0;
     var level=1;
     ////////////////////////////////////////////////////////////////////
     //EventListener
@@ -31,6 +32,7 @@ window.addEventListener('load', function(){
     var compteClicDrapeauActuel=compteurScore();//utilisé pour les scores individuels au Drapeaux
     
     function updateColor(){
+        
         this.style.backgroundColor = nextColor;//toujours associer à la fonction addeventListener 'click'        
              
         if(nextColor==palette[0]){nextColor=palette[1];}
@@ -40,24 +42,31 @@ window.addEventListener('load', function(){
         //on pourra ajouter de la difficulté plus tard via le nombre de couleur par Drapeau
         else if(nextColor==palette[4]){nextColor=palette[5];}
         else if(nextColor==palette[5]){nextColor=palette[0];}
+        else{}
 
         document.getElementById('spanRight').textContent = "Nombre de clics : "+NbClick();
-        verifDrapeauValid();       
+        verifDrapeauValid();   
+           
     }
   
 
     function updateAffichageLevel(){
         document.getElementById('spanLeft').textContent = "Niveau "+level +'/'+pays.length;
     }
+    function updateAffichageScore(){
+        document.getElementById('spanScore').textContent = "Score  "+'';////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
+    }
 
     function verifDrapeauValid(){      
         
-        if(level ==1){isFlagValidFrance();palette=paletteFrance;}
-        if(level ==2){isFlagValidBelgique();palette=paletteBelgique;}
-        if(level ==3){isFlagValidAllemagne();palette=paletteAllemagne;}
-        if(level ==4){isFlagValidHolland();palette=paletteHolland;}
-        if(level ==5){isFlagValidPologne();palette=palettePologne;}
-        if(level ==6){isFlagValidTcheque();palette=paletteTcheque;}
+        if(level ==1){isFlagValidFrance();}
+        if(level ==2){isFlagValidBelgique();}
+        if(level ==3){isFlagValidAllemagne();}
+        if(level ==4){isFlagValidHolland();}
+        if(level ==5){isFlagValidPologne();}
+        if(level ==6){isFlagValidTcheque();}
 
         else{console.log('Vérification sans Bouton valider est active');}
         
@@ -72,20 +81,23 @@ window.addEventListener('load', function(){
         canvasleft.addEventListener('click', updateColor);
         canvasCentre.addEventListener('click', updateColor);
         canvasRight.addEventListener('click', updateColor);
+        alert('EventListener Clic pour les canvas');
     }            
     
 
     function isFlagValidFrance(){
-               
+        
         if(partieGauche.style.backgroundColor==='blue' && 
-           partieCentre.style.backgroundColor==='white'&&
+            partieCentre.style.backgroundColor==='white'&&
            partieDroite.style.backgroundColor==='red'){
             console.log('Couleur trouvée France');
+            alert('Entrer dans isFlagValid2'); 
             lireSon();
             changerDrapeauTcheque(); ///////////////////////////////////////////////TEST
             //changerDrapeauBelgique();/////////////////////////////////////////////TEST
-            activerDessin();////////////////////////////////////////////////////////TEST
+            //activerDessin();////////////////////////////////////////////////////////TEST
             updateAffichageLevel();
+            
                                                 
             
         }else{                    
@@ -106,6 +118,25 @@ window.addEventListener('load', function(){
         else{                    
         }
     }
+    function isFlagValidTchad(){               
+        if(partieGauche.style.backgroundColor==='blue' && 
+          partieCentre.style.backgroundColor==='yellow'&&
+          partieDroite.style.backgroundColor==='red'){
+        console.log(' Couleur TrouvÃ©e Tchad');
+        lireSon();
+        changerDrapeauAllemagne();                                          
+        document.getElementById('spanLeft').textContent = "Niveau "+niveau +'/'+pays.length;
+        document.getElementById('flags').style.display='inline-grid';
+        document.getElementById('flags').style.width= '-webkit-fill-available';
+        partieGauche.style.height='50px';
+        partieGauche.style.width='100%';
+        partieCentre.style.height='50px';
+        partieCentre.style.width='100%';
+        partieDroite.style.height='50px';
+        partieDroite.style.width='100%';
+        }else{                    
+        }
+    }
 
     function isFlagValidAllemagne(){
         
@@ -119,6 +150,25 @@ window.addEventListener('load', function(){
         updateAffichageLevel();
                                              
         }else{                   
+        }
+    }
+        function isFlagValidTchad(){               
+        if(partieGauche.style.backgroundColor==='blue' && 
+          partieCentre.style.backgroundColor==='yellow'&&
+          partieDroite.style.backgroundColor==='red'){
+        console.log(' Couleur TrouvÃ©e Tchad');
+        lireSon();
+        changerDrapeauAllemagne();                                          
+        document.getElementById('spanLeft').textContent = "Niveau "+niveau +'/'+pays.length;
+        document.getElementById('flags').style.display='inline-grid';
+        document.getElementById('flags').style.width= '-webkit-fill-available';
+        partieGauche.style.height='50px';
+        partieGauche.style.width='100%';
+        partieCentre.style.height='50px';
+        partieCentre.style.width='100%';
+        partieDroite.style.height='50px';
+        partieDroite.style.width='100%';
+        }else{                    
         }
     }
 
@@ -168,17 +218,19 @@ window.addEventListener('load', function(){
     }
     //Suite de fonctions pour changer les couleurs des Drapeaux(MÃ©thodes non factorisÃ©es)
     function changerDrapeauBelgique(){
-        ++score;
+        palette=paletteBelgique;
+        ++NbdeClic;
         ++level;
         document.getElementById('titreh1').textContent='Belgique';
         nextColor=palette[0];
         partieGauche.style.backgroundColor=palette[0];
-        partieCentre.style.backgroundColor=palette[0];
-        partieDroite.style.backgroundColor=palette[0];
+        partieCentre.style.backgroundColor=palette[1];
+        partieDroite.style.backgroundColor=palette[2];
     }
 
     function changerDrapeauAllemagne(){
-        ++score;
+        palette=paletteAllemagne;
+        ++NbdeClic;
         ++level;
         ////////////////Rotation de la Div Flag via css
         document.getElementById('flags').style.display='inline-grid';
@@ -199,7 +251,8 @@ window.addEventListener('load', function(){
     }
 
     function changerDrapeauHolland(){
-        ++score;
+        palette=paletteHolland;
+        ++NbdeClic;
         ++level;
         document.getElementById('titreh1').textContent='Pays-Bas';
         nextColor=palette[0];
@@ -211,7 +264,8 @@ window.addEventListener('load', function(){
     //Dessiner le Drapeau Polonais et Tcheque
      
     function changerDrapeauPologne(){
-        ++score;
+        palette=palettePologne;
+        ++NbdeClic;
         ++level;       
         document.getElementById('titreh1').textContent='Pologne';
         nextColor=palette[0];
@@ -220,7 +274,8 @@ window.addEventListener('load', function(){
         partieDroite.style.backgroundColor=palette[2];
     }
     function changerDrapeauTcheque(){
-        ++score;
+        palette=paletteTcheque;
+        ++NbdeClic;
         //++level;///////////////////////////////////////TEST
         level=6;/////////////////////////////////////////       
         document.getElementById('titreh1').textContent='Republique Tcheque';
@@ -234,6 +289,7 @@ window.addEventListener('load', function(){
         canvasleft.style.display='inline-flex';
         canvasCentre.style.display='inline-flex';
         canvasRight.style.display='inline-flex';
+        document.getElementById('RepTcheque').display="block";
 
         canvasleft.style.backgroundColor=palette[0];
         canvasCentre.style.backgroundColor=palette[0];

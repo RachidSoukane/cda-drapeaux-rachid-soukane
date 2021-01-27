@@ -47,6 +47,7 @@ h1,p, h3{
     padding: 0;
     display: inline-flex;
     width: -webkit-fill-available;
+    position: static;
 }
 
 #flagLeft{
@@ -213,30 +214,36 @@ h1,p, h3{
 }
 
 #RepTcheque{
-  height: 153px;
+  height: 141px;
+  width: 148px;
+/*display: none;*//*il sera masqué depuis le JS*/
+
 }
 #RepTcheque #triangleTcheque {
   position: absolute;
-  clip-path: polygon(31% 48%, 0% 0%, 0% 96%);
-  height: 22%;
+  clip-path: polygon(25% 45%, 0% 0%, 0% 90%);
+  margin-left: -35%;
+  /*height: 22%;
   width: 100%;
-  margin-left: 0px;
+  margin-left: 0px;*/
+  z-index: 8;
 }
   #BasTcheque {
     display: inline-flex;
     background-color: red;
-    position: static;
+    position: absolute;
+    margin-left: -35%;
     height: 68px;
     
-    margin-top: -5px;
-    margin-left: 1px;
+    margin-top: 68px;
+    
     width: 277px;
 
   }
   #HautTcheque{
     display: inline-flex;
-    position: static;
-    margin-left: 1px;
+    position: absolute;
+    margin-left: -35%;
     background-color: blue;
     height: 68px;
     width: 277px;
