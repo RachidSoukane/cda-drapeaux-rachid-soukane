@@ -16,7 +16,7 @@ window.addEventListener('load', function(){
     var paletteHolland=['green','red','white','blue'];
     var palettePologne=['green','blue','white','red'];
     var paletteTcheque=['black','blue','white','red'];
-    var pays = ['France','Belgique','Allemagne','Hollande','Pologne'];
+    var pays = ['France','Belgique','Allemagne','Hollande','Pologne','Republique Tcheque'];
     //var pays = ['France','Belgique','Allemagne','Hollande','Pologne','Tcheque']; //Etape9 sera rÃ©activÃ©e lorsque le dessin des drapeaux sera fonctionnel
     var NbdeClic=0;
     var level=1;
@@ -52,8 +52,9 @@ window.addEventListener('load', function(){
 
     function updateAffichageLevel(){
         document.getElementById('spanLeft').textContent = "Niveau "+level +'/'+pays.length;
+        document.getElementById('canvasLeft').textContent = "Niveau "+level +'/'+pays.length;
     }
-    function updateAffichageScore(){
+    function updateAffichageScore(){//////////////////////Pour le spanScore
         document.getElementById('spanScore').textContent = "Score  "+'';////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,12 +62,12 @@ window.addEventListener('load', function(){
 
     function verifDrapeauValid(){      
         
-        if(level ==1){isFlagValidFrance();}
-        if(level ==2){isFlagValidBelgique();}
-        if(level ==3){isFlagValidAllemagne();}
-        if(level ==4){isFlagValidHolland();}
-        if(level ==5){isFlagValidPologne();}
-        if(level ==6){isFlagValidTcheque();}
+        if(level ==1){isFlagValidFrance();}/////////////////////////////////ici on insere les Timers
+        else if(level ==2){isFlagValidBelgique();}
+        else if(level ==3){isFlagValidAllemagne();}
+        else if(level ==4){isFlagValidHolland();}
+        else if(level ==5){isFlagValidPologne();}
+        else if(level ==6){isFlagValidTcheque();}
 
         else{console.log('Vérification sans Bouton valider est active');}
         
@@ -90,12 +91,13 @@ window.addEventListener('load', function(){
         if(partieGauche.style.backgroundColor==='blue' && 
             partieCentre.style.backgroundColor==='white'&&
            partieDroite.style.backgroundColor==='red'){
+            document.getElementById('spanTimer').display='none';
             console.log('Couleur trouvée France');
-            alert('Entrer dans isFlagValid2'); 
             lireSon();
-            changerDrapeauTcheque(); ///////////////////////////////////////////////TEST
-            //changerDrapeauBelgique();/////////////////////////////////////////////TEST
-            //activerDessin();////////////////////////////////////////////////////////TEST
+            changerDrapeauBelgique();/////////////////////////////////////////////TEST
+            stopChronoFrance();
+            startChronometreBelgique();
+            
             updateAffichageLevel();
             
                                                 
@@ -113,6 +115,8 @@ window.addEventListener('load', function(){
         lireSon();
         changerDrapeauAllemagne();                                          
         updateAffichageLevel();
+        stopChronoBelgique();
+        startChronometreAllemagne();
 
         }
         else{                    
@@ -148,6 +152,8 @@ window.addEventListener('load', function(){
         lireSon();
         changerDrapeauHolland();                                     
         updateAffichageLevel();
+        stopChronoAllemagne();
+        startChronometrePaysBas();
                                              
         }else{                   
         }
@@ -158,6 +164,7 @@ window.addEventListener('load', function(){
           partieDroite.style.backgroundColor==='red'){
         console.log(' Couleur TrouvÃ©e Tchad');
         lireSon();
+        stopChronoFrance();
         changerDrapeauAllemagne();                                          
         document.getElementById('spanLeft').textContent = "Niveau "+niveau +'/'+pays.length;
         document.getElementById('flags').style.display='inline-grid';
@@ -180,7 +187,9 @@ window.addEventListener('load', function(){
           partieDroite.style.backgroundColor==='blue'){
         updateAffichageLevel();         
         lireSon();
-        changerDrapeauPologne();        
+        changerDrapeauPologne();
+        stopChronoPaysBas();
+        startChronometrePologne();        
         }else{                    
         }
     }
@@ -193,6 +202,8 @@ window.addEventListener('load', function(){
         partieDroite.style.backgroundColor==='red'){
         changerDrapeauTcheque();    
         updateAffichageLevel();
+        stopChronoPologne();
+        startChronometreTcheque();
         
         lireSon();
      
@@ -210,6 +221,7 @@ window.addEventListener('load', function(){
         lireSon();
         //////////////////////////////Fin de Partie
         changerDrapeauFinal();//Pour mettre fin à la partie et Chrono
+        stopChronoTcheque();
         JeuTermine=true;//Pour mettre fin à la partie et Chrono     
     
         
@@ -236,11 +248,15 @@ window.addEventListener('load', function(){
         document.getElementById('flags').style.display='inline-grid';
         document.getElementById('flags').style.width= '-webkit-fill-available';
         partieGauche.style.height='50px';
-        partieGauche.style.width='90%';
+        partieGauche.style.width='85%';
+        partieGauche.style.justifySelf='center';
         partieCentre.style.height='50px';
-        partieCentre.style.width='90%';
+        partieCentre.style.width='85%';
+        partieCentre.style.justifySelf='center';
         partieDroite.style.height='50px';
-        partieDroite.style.width='90%';
+        partieDroite.style.width='85%';
+        partieDroite.style.justifySelf='center';
+
         ///////////////////////////////////////////////////
         palette=paletteAllemagne;
         document.getElementById('titreh1').textContent='Allemagne';
@@ -279,6 +295,7 @@ window.addEventListener('load', function(){
         //++level;///////////////////////////////////////TEST
         level=6;/////////////////////////////////////////       
         document.getElementById('titreh1').textContent='Republique Tcheque';
+        document.getElementById('RepTcheque').style.display="block";
 
 
         
@@ -289,8 +306,9 @@ window.addEventListener('load', function(){
         canvasleft.style.display='inline-flex';
         canvasCentre.style.display='inline-flex';
         canvasRight.style.display='inline-flex';
-        document.getElementById('RepTcheque').display="block";
-
+        
+        
+        activerDessin();////////////////////////////////////////////////////////TEST
         canvasleft.style.backgroundColor=palette[0];
         canvasCentre.style.backgroundColor=palette[0];
         canvasRight.style.backgroundColor=palette[2];
@@ -390,7 +408,8 @@ window.addEventListener('load', function(){
         partieDroite.style.backgroundColor=palette[0];
     }           
 
-    //////////////////////////////////Fonction Chrono/////////////////////////////////////////////
+    //////////////////////////////////Fonction Chrono////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     var horlogeTimer;
     function chronometre(){
         var seconde = 0;
@@ -403,14 +422,143 @@ window.addEventListener('load', function(){
                 seconde =0;
                 minute++;
             }
-        document.getElementById('spanCentre').textContent = heure+':'+minute+':'+ seconde;
+        document.getElementById('spanTimer').textContent = heure+':'+minute+':'+ seconde;
         }
         horlogeTimer=setInterval(chrono, 1000);            
     }            
     function stopChrono() {
         clearInterval(horlogeTimer);
     }
-    //////////////////////////////////////////////////////////////////////////////////////////////            
+    ///////////////////////////////////////France
+    var horlogeTimerFrance;
+    function startChronometreFrance(){
+        document.getElementById('spanTimerFrance').style.display='block';
+        var seconde = 0;
+        var minute = 0;
+        var heure = 0;
+        function chrono(){
+            if (seconde<59) {
+                seconde ++;
+            }else{
+                seconde =0;
+                minute++;
+            }
+        document.getElementById('spanTimerFrance').textContent = heure+':'+minute+':'+ seconde;
+        }
+        horlogeTimerFrance=setInterval(chrono, 1000);            
+    }            
+    function stopChronoFrance() {
+        clearInterval(horlogeTimerFrance);
+        document.getElementById('spanTimerFrance').style.display='none';
+    }
+    var horlogeTimerFrance;
+    function startChronometreBelgique(){
+        document.getElementById('spanTimerBelgique').style.display='block';
+        var seconde = 0;
+        var minute = 0;
+        var heure = 0;
+        function chrono(){
+            if (seconde<59) {
+                seconde ++;
+            }else{
+                seconde =0;
+                minute++;
+            }
+        document.getElementById('spanTimerBelgique').textContent = heure+':'+minute+':'+ seconde;
+        }
+        horlogeTimerBelgique=setInterval(chrono, 1000);            
+    }            
+    function stopChronoBelgique() {
+        clearInterval(horlogeTimerBelgique);
+        document.getElementById('spanTimerBelgique').style.display='none';
+    }
+    var horlogeTimerFrance;
+    function startChronometreAllemagne(){
+        document.getElementById('spanTimerAllemagne').style.display='block';
+        var seconde = 0;
+        var minute = 0;
+        var heure = 0;
+        function chrono(){
+            if (seconde<59) {
+                seconde ++;
+            }else{
+                seconde =0;
+                minute++;
+            }
+        document.getElementById('spanTimerAllemagne').textContent = heure+':'+minute+':'+ seconde;
+        }
+        horlogeTimerAllemagne=setInterval(chrono, 1000);            
+    }            
+    function stopChronoAllemagne() {
+        clearInterval(horlogeTimerAllemagne);
+        document.getElementById('spanTimerAllemagne').style.display='none';
+    }
+    var horlogeTimerFrance;
+    function startChronometrePaysBas(){
+        document.getElementById('spanTimerPaysBas').style.display='block';
+        var seconde = 0;
+        var minute = 0;
+        var heure = 0;
+        function chrono(){
+            if (seconde<59) {
+                seconde ++;
+            }else{
+                seconde =0;
+                minute++;
+            }
+        document.getElementById('spanTimerPaysBas').textContent = heure+':'+minute+':'+ seconde;
+        }
+        horlogeTimerPaysBas=setInterval(chrono, 1000);            
+    }            
+    function stopChronoPaysBas() {
+        clearInterval(horlogeTimerPaysBas);
+        document.getElementById('spanTimerPaysBas').style.display='none';
+    }
+    var horlogeTimerFrance;
+    function startChronometrePologne(){
+        document.getElementById('spanTimerPologne').style.display='block';
+        var seconde = 0;
+        var minute = 0;
+        var heure = 0;
+        function chrono(){
+            if (seconde<59) {
+                seconde ++;
+            }else{
+                seconde =0;
+                minute++;
+            }
+        document.getElementById('spanTimerPologne').textContent = heure+':'+minute+':'+ seconde;
+        }
+        horlogeTimerPologne=setInterval(chrono, 1000);            
+    }            
+    function stopChronoPologne() {
+        clearInterval(horlogeTimerPologne);
+        document.getElementById('spanTimerPologne').style.display='none';
+    }
+    var horlogeTimerFrance;
+    function startChronometreTcheque(){
+        document.getElementById('spanTimerTcheque').style.display='block';
+        var seconde = 0;
+        var minute = 0;
+        var heure = 0;
+        function chrono(){
+            if (seconde<59) {
+                seconde ++;
+            }else{
+                seconde =0;
+                minute++;
+            }
+        document.getElementById('spanTimerTcheque').textContent = heure+':'+minute+':'+ seconde;
+        }
+        horlogeTimerTcheque=setInterval(chrono, 1000);            
+    }            
+    function stopChronoTcheque() {
+        clearInterval(horlogeTimerTcheque);
+        document.getElementById('spanTimerTcheque').style.display='none';
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
  //Bouton popup commencer/////////////////////////////////////////////////////
  document.getElementById('button_modal').addEventListener('click',openModal);
 
@@ -419,10 +567,15 @@ window.addEventListener('load', function(){
     document.getElementById('popup').style.marginTop='-800px';
     if(JeuTermine){
         stopChrono();
+        document.getElementById('spanTimer').style.display='none';
     }else{
-        chronometre();            
+        chronometre();
+        document.getElementById('spanTimer').style.display='none';
+        document.getElementById('spanTimerFrance').style.display='block';
+        startChronometreFrance();            
     }
  }
+ 
          
 /////////////////////////////////////////////////////////////////////////        
 //Fonction pour lire le son Ã  la validation d'un drapeau///////////////////////////

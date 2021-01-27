@@ -28,8 +28,21 @@ div{
 h1,p, h3{
     text-align: center;
     color: #ffffff;
+    padding: 0;
+    margin: 0%;
+}
+#Jeu{
+  border: solid;
+  border-radius: 20px;
+  border-color: #92b1ff;
+  background-color: #6b5b95;
+  height: fit-content;
 }
 
+#enTete{
+    text-align-last: center;
+
+}
 #canvas{
     /*background-color: aliceblue;*/
     width:100%;
@@ -72,18 +85,7 @@ h1,p, h3{
     height: fit-content;
 }
 
-#Jeu{
-  border: solid;
-  border-radius: 20px;
-  border-color: #92b1ff;
-  background-color: #6b5b95;
-  height: fit-content;
-}
 
-#enTete{
-    text-align-last: center;
-
-}
 @font-face {
     font-family: fontTimer;
     src: url(Open_24_Display_St.ttf);
@@ -156,10 +158,16 @@ h1,p, h3{
  }
  #timer{
     text-align-last: center;
- }
+    color: whitesmoke;
+    background-color: #0b00a3;
+
+    width: 85%;
+    margin: auto;
+    margin-top: 20%;
+    font-size: x-large;
+}
 
 
-  }
   @media only screen and (max-width: 769px) {
       /* For mobile phones: */
       #flagLeft, #flagCenter, #flagRight {
@@ -216,7 +224,7 @@ h1,p, h3{
 #RepTcheque{
   height: 141px;
   width: 148px;
-/*display: none;*//*il sera masqué depuis le JS*/
+  display: none;
 
 }
 #RepTcheque #triangleTcheque {
