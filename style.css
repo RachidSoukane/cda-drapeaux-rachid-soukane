@@ -76,6 +76,7 @@ h1,p, h3{
   border-radius: 20px;
   border-color: #92b1ff;
   background-color: #6b5b95;
+  height: fit-content;
 }
 
 #enTete{
@@ -135,12 +136,12 @@ h1,p, h3{
     margin-top: 3px;
  }
  #modal{
-    height: 453px;
-    width: 100%;
-    background-color: #e1b12c;
-    text-align-last: center;
-    border-radius: 8px;
-    margin-top: -457px;
+  height: 520px;
+  width: 100%;
+  background-color: #e1b12c;
+  text-align-last: center;
+  border-radius: 8px;
+  margin-top: -524px;
  }
  .music{
     background-color: #000000;
@@ -156,25 +157,7 @@ h1,p, h3{
     text-align-last: center;
  }
 
- @media only screen and (max-width: 407px) {
-    /* For mobile phones: */
-    #flagLeft, #flagCenter, #flagRight {
-      width: 22%;
-    }
-    h1{
-        font-size: 29px;
-    }
-    p{
-      font-size: 8px;
-    }
-    #modal {
-      height: 486px;
-      width: 100%;
-      background-color: #e1b12c;
-      text-align-last: center;
-      border-radius: 10px;
-      margin-top: -500px;
-  }
+
   }
   @media only screen and (max-width: 769px) {
       /* For mobile phones: */
@@ -196,4 +179,65 @@ h1,p, h3{
         margin-top: -500px;
     }
   
+  }
+  @media only screen and (max-width: 407px) {
+    /* For mobile phones: */
+    #flagLeft, #flagCenter, #flagRight {
+      width: 22%;
+    }
+    h1{
+        font-size: 29px;
+    }
+    p{
+      font-size: 8px;
+    }
+    #modal {
+      height: 486px;
+      width: 100%;
+      background-color: #e1b12c;
+      text-align-last: center;
+      border-radius: 10px;
+      margin-top: -500px;
+  }
+}
+
+  @media only screen and (max-width: 250px){
+    #modal {
+      height: 587px;
+      width: 100%;
+      background-color: #e1b12c;
+      text-align-last: center;
+      border-radius: 10px;
+      margin-top: -576px;
+  }
+}
+
+#RepTcheque{
+  height: 153px;
+}
+#RepTcheque #triangleTcheque {
+  position: absolute;
+  clip-path: polygon(31% 48%, 0% 0%, 0% 96%);
+  height: 22%;
+  width: 100%;
+  margin-left: 0px;
+}
+  #BasTcheque {
+    display: inline-flex;
+    background-color: red;
+    position: static;
+    height: 68px;
+    
+    margin-top: -5px;
+    margin-left: 1px;
+    width: 277px;
+
+  }
+  #HautTcheque{
+    display: inline-flex;
+    position: static;
+    margin-left: 1px;
+    background-color: blue;
+    height: 68px;
+    width: 277px;
   }
