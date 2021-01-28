@@ -28,13 +28,12 @@ window.addEventListener('load', function(){
     /////////////////Compteurs
     function compteurClick(){var i=1;return function(){return i++;}}
     function compteurScore(){var i=0;return function(){return i++;}}
-    var NbClick=compteurClick();
+    var NbClickCumule=compteurClick();
     var compteClicDrapeauActuel=compteurScore();//utilisé pour les scores individuels au Drapeaux
     
     function updateColor(){
         
-        this.style.backgroundColor = nextColor;//toujours associer à la fonction addeventListener 'click'        
-             
+        this.style.backgroundColor = nextColor;//toujours associer à la fonction addeventListener 'click'             
         if(nextColor==palette[0]){nextColor=palette[1];}
         else if(nextColor==palette[1]){nextColor=palette[2];}
         else if(nextColor==palette[2]){nextColor=palette[3];}
@@ -43,21 +42,13 @@ window.addEventListener('load', function(){
         else if(nextColor==palette[4]){nextColor=palette[5];}
         else if(nextColor==palette[5]){nextColor=palette[0];}
         else{}
-
-        document.getElementById('spanRight').textContent = "Nombre de clics : "+NbClick();
-        verifDrapeauValid();   
-           
+        document.getElementById('spanRight').textContent = "Nombre de clics : "+NbClickCumule();
+        verifDrapeauValid();
     }
   
 
     function updateAffichageLevel(){
         document.getElementById('spanLeft').textContent = "Niveau "+level +'/'+pays.length;
-        document.getElementById('canvasLeft').textContent = "Niveau "+level +'/'+pays.length;
-    }
-    function updateAffichageScore(){//////////////////////Pour le spanScore
-        document.getElementById('spanScore').textContent = "Score  "+'';////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////
-        ///////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
     function verifDrapeauValid(){      
@@ -69,7 +60,7 @@ window.addEventListener('load', function(){
         else if(level ==5){isFlagValidPologne();}
         else if(level ==6){isFlagValidTcheque();}
 
-        else{console.log('Vérification sans Bouton valider est active');}
+        else{console.log('Vérification Couleurs du Drapeau en cours');}
         
         }
 
@@ -82,29 +73,38 @@ window.addEventListener('load', function(){
         canvasleft.addEventListener('click', updateColor);
         canvasCentre.addEventListener('click', updateColor);
         canvasRight.addEventListener('click', updateColor);
-        alert('EventListener Clic pour les canvas');
+        
     }            
     
-
-    function isFlagValidFrance(){
-        
+    var score=0;  
+    function isFlagValidFrance(){        
         if(partieGauche.style.backgroundColor==='blue' && 
             partieCentre.style.backgroundColor==='white'&&
            partieDroite.style.backgroundColor==='red'){
             document.getElementById('spanTimer').display='none';
             console.log('Couleur trouvée France');
             lireSon();
-            changerDrapeauBelgique();/////////////////////////////////////////////TEST
-            stopChronoFrance();
-            startChronometreBelgique();
-            
+            changerDrapeauBelgique();            
+            startChronometreBelgique();            
             updateAffichageLevel();
-            
-                                                
-            
+            //on retire le player et on coupe le son de l'hymne en cours
+            document.getElementById('musicPlayerFrance').style.display='none';
+            document.getElementById('HymneFrance').pause();
+            document.getElementById('musicPlayerBelgique').style.display='grid';
+
+            NbdeClicFrance=NbClickCumule() -1;
+            tempsRealiseFrance =document.getElementById('spanTimerFrance').textContent;
+            calculScoreFrance();
+            stopChronoFrance();                        
         }else{                    
         }
     }
+
+    
+
+       
+
+
     function isFlagValidBelgique(){
          
            
@@ -117,33 +117,23 @@ window.addEventListener('load', function(){
         updateAffichageLevel();
         stopChronoBelgique();
         startChronometreAllemagne();
+        //on retire le player et on coupe le son de l'hymne en cours + ajoute le display player du drapeau suivant
+        document.getElementById('musicPlayerBelgique').style.display='none';
+        document.getElementById('HymneBelgique').pause();
+        document.getElementById('musicPlayerAllemagne').style.display='grid';
+
+        NbdeClicBelgique=NbClickCumule() -1;
+        tempsRealiseBelgique =document.getElementById('spanTimerBelgique').textContent;
+        calculScoreBelgique();
+        stopChronoBelgique();   
 
         }
         else{                    
         }
     }
-    function isFlagValidTchad(){               
-        if(partieGauche.style.backgroundColor==='blue' && 
-          partieCentre.style.backgroundColor==='yellow'&&
-          partieDroite.style.backgroundColor==='red'){
-        console.log(' Couleur TrouvÃ©e Tchad');
-        lireSon();
-        changerDrapeauAllemagne();                                          
-        document.getElementById('spanLeft').textContent = "Niveau "+niveau +'/'+pays.length;
-        document.getElementById('flags').style.display='inline-grid';
-        document.getElementById('flags').style.width= '-webkit-fill-available';
-        partieGauche.style.height='50px';
-        partieGauche.style.width='100%';
-        partieCentre.style.height='50px';
-        partieCentre.style.width='100%';
-        partieDroite.style.height='50px';
-        partieDroite.style.width='100%';
-        }else{                    
-        }
-    }
 
-    function isFlagValidAllemagne(){
-        
+
+    function isFlagValidAllemagne(){       
                  
         if(partieGauche.style.backgroundColor==='black' && 
           partieCentre.style.backgroundColor==='red'&&
@@ -154,33 +144,22 @@ window.addEventListener('load', function(){
         updateAffichageLevel();
         stopChronoAllemagne();
         startChronometrePaysBas();
+        //on retire le player et on coupe le son de l'hymne en cours
+        document.getElementById('musicPlayerAllemagne').style.display='none';
+        document.getElementById('HymneAllemagne').pause();
+        document.getElementById('musicPlayerPayBas').style.display='grid';
+
+        NbdeClicAllemagne=NbClickCumule() -1;
+        tempsRealiseAllemagne =document.getElementById('spanTimerAllemagne').textContent;
+        calculScoreAllemagne();
+        stopChronoAllemagne(); 
+        
                                              
         }else{                   
         }
     }
-        function isFlagValidTchad(){               
-        if(partieGauche.style.backgroundColor==='blue' && 
-          partieCentre.style.backgroundColor==='yellow'&&
-          partieDroite.style.backgroundColor==='red'){
-        console.log(' Couleur TrouvÃ©e Tchad');
-        lireSon();
-        stopChronoFrance();
-        changerDrapeauAllemagne();                                          
-        document.getElementById('spanLeft').textContent = "Niveau "+niveau +'/'+pays.length;
-        document.getElementById('flags').style.display='inline-grid';
-        document.getElementById('flags').style.width= '-webkit-fill-available';
-        partieGauche.style.height='50px';
-        partieGauche.style.width='100%';
-        partieCentre.style.height='50px';
-        partieCentre.style.width='100%';
-        partieDroite.style.height='50px';
-        partieDroite.style.width='100%';
-        }else{                    
-        }
-    }
 
-    function isFlagValidHolland(){
-        
+    function isFlagValidHolland(){       
                
         if(partieGauche.style.backgroundColor==='red' && 
           partieCentre.style.backgroundColor==='white'&&
@@ -189,10 +168,22 @@ window.addEventListener('load', function(){
         lireSon();
         changerDrapeauPologne();
         stopChronoPaysBas();
-        startChronometrePologne();        
-        }else{                    
+        startChronometrePologne();
+        //on retire le player et on coupe le son de l'hymne en cours
+        document.getElementById('musicPlayerPayBas').style.display='none';
+        document.getElementById('HymnePaysBas').pause();
+        document.getElementById('musicPlayerPologne').style.display='grid';
+
+        NbdeClicHolland=NbClickCumule() -1;
+        tempsRealiseHolland =document.getElementById('spanTimerPaysBas').textContent;
+        calculScoreHolland();
+        stopChronoPaysBas(); 
+
+        }else{
         }
     }
+
+ 
 
     function isFlagValidPologne(){
         
@@ -204,8 +195,17 @@ window.addEventListener('load', function(){
         updateAffichageLevel();
         stopChronoPologne();
         startChronometreTcheque();
+        //on retire le player et on coupe le son de l'hymne en cours
+        document.getElementById('musicPlayerPologne').style.display='none';
+        document.getElementById('HymnePologne').pause();
+        document.getElementById('musicPlayerTcheque').style.display='grid';
         
         lireSon();
+
+        NbdeClicPologne=NbClickCumule() -1;
+        tempsRealisePologne =document.getElementById('spanTimerPologne').textContent;
+        calculScorePologne();
+        stopChronoPologne(); 
      
         
         }else{                    
@@ -217,17 +217,31 @@ window.addEventListener('load', function(){
         canvasCentre.style.backgroundColor==='white'&&
         canvasRight.style.backgroundColor==='red'){
         updateAffichageLevel();
-        alert("thank You my Friend!"); 
+        
         lireSon();
+        //on retire le player et on coupe le son de l'hymne en cours
+        document.getElementById('musicPlayerTcheque').style.display='none';
+        document.getElementById('HymneTcheque').pause();
+
+
+        NbdeClicTcheque=NbClickCumule() -1;
+        tempsRealiseTcheque =document.getElementById('spanTimerTcheque').textContent;
+        stopChronoTcheque();    
+        calculScoreTcheque();
+
         //////////////////////////////Fin de Partie
         changerDrapeauFinal();//Pour mettre fin à la partie et Chrono
-        stopChronoTcheque();
+        
         JeuTermine=true;//Pour mettre fin à la partie et Chrono     
     
         
         }else{                    
         }
     }
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////
     //Suite de fonctions pour changer les couleurs des Drapeaux(MÃ©thodes non factorisÃ©es)
     function changerDrapeauBelgique(){
         palette=paletteBelgique;
@@ -327,7 +341,6 @@ window.addEventListener('load', function(){
  var ctx3 = canvasRight.getContext('2d');
  function drapeauPolonais(){
     return function(){
-     
        
         
         ctx1.beginPath();
@@ -357,10 +370,10 @@ window.addEventListener('load', function(){
  }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+
     //Besoin du Drapeau Final 
     function changerDrapeauFinal(){
-
-
         ////////////////Rotation de la Div Flag via css
         document.getElementById('flags').style.display='inline-flex';
         document.getElementById('flags').style.width= '-webkit-fill-available';
@@ -377,7 +390,7 @@ window.addEventListener('load', function(){
         var FinalTime= document.getElementById('DureeTotale');
         var FinalClic= document.getElementById('TotalClic');
         var NombreClicMinimum =34;
-        var AfficheNBClicFinal = NbClick() -1;
+        var AfficheNBClicFinal = NbClickCumule() -1;
         var scoreTotal = ((NombreClicMinimum)/AfficheNBClicFinal)*100;
 
         FinalScore.textContent="Score :" + Math.round(scoreTotal) + "\%";
@@ -392,6 +405,7 @@ window.addEventListener('load', function(){
         //document.getElementById('timer').textContent='score';
         partieGauche.style.width='';                    
         //Message dans la fenetre principale en fonction du score 
+        
         if(resultatTemps=37){
             document.getElementById('flags').textContent=
             "Bravo vous avez atteint"+
@@ -399,6 +413,8 @@ window.addEventListener('load', function(){
         }else{
             document.getElementById('flags').textContent="peu mieux faire";
             }
+            
+
         partieCentre.style.height='';
         partieCentre.style.width='';
         partieDroite.style.height='';
@@ -406,11 +422,12 @@ window.addEventListener('load', function(){
         partieGauche.style.backgroundColor=palette[0];
         partieCentre.style.backgroundColor=palette[0];
         partieDroite.style.backgroundColor=palette[0];
-    }           
+    }
+    
 
     //////////////////////////////////Fonction Chrono////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    var horlogeTimer;
+    var horlogeTimer;    
     function chronometre(){
         var seconde = 0;
         var minute = 0;
@@ -424,8 +441,9 @@ window.addEventListener('load', function(){
             }
         document.getElementById('spanTimer').textContent = heure+':'+minute+':'+ seconde;
         }
-        horlogeTimer=setInterval(chrono, 1000);            
-    }            
+        horlogeTimer=setInterval(chrono, 1000);
+    }
+    
     function stopChrono() {
         clearInterval(horlogeTimer);
     }
@@ -451,7 +469,7 @@ window.addEventListener('load', function(){
         clearInterval(horlogeTimerFrance);
         document.getElementById('spanTimerFrance').style.display='none';
     }
-    var horlogeTimerFrance;
+    var horlogeTimerBelgique;
     function startChronometreBelgique(){
         document.getElementById('spanTimerBelgique').style.display='block';
         var seconde = 0;
@@ -472,7 +490,7 @@ window.addEventListener('load', function(){
         clearInterval(horlogeTimerBelgique);
         document.getElementById('spanTimerBelgique').style.display='none';
     }
-    var horlogeTimerFrance;
+    var horlogeTimerAllemagne;
     function startChronometreAllemagne(){
         document.getElementById('spanTimerAllemagne').style.display='block';
         var seconde = 0;
@@ -493,7 +511,7 @@ window.addEventListener('load', function(){
         clearInterval(horlogeTimerAllemagne);
         document.getElementById('spanTimerAllemagne').style.display='none';
     }
-    var horlogeTimerFrance;
+    var horlogeTimerPaysBas;
     function startChronometrePaysBas(){
         document.getElementById('spanTimerPaysBas').style.display='block';
         var seconde = 0;
@@ -514,7 +532,7 @@ window.addEventListener('load', function(){
         clearInterval(horlogeTimerPaysBas);
         document.getElementById('spanTimerPaysBas').style.display='none';
     }
-    var horlogeTimerFrance;
+    var horlogeTimerPologne;
     function startChronometrePologne(){
         document.getElementById('spanTimerPologne').style.display='block';
         var seconde = 0;
@@ -535,7 +553,7 @@ window.addEventListener('load', function(){
         clearInterval(horlogeTimerPologne);
         document.getElementById('spanTimerPologne').style.display='none';
     }
-    var horlogeTimerFrance;
+    var horlogeTimerTcheque;
     function startChronometreTcheque(){
         document.getElementById('spanTimerTcheque').style.display='block';
         var seconde = 0;
@@ -574,9 +592,7 @@ window.addEventListener('load', function(){
         document.getElementById('spanTimerFrance').style.display='block';
         startChronometreFrance();            
     }
- }
- 
-         
+ }         
 /////////////////////////////////////////////////////////////////////////        
 //Fonction pour lire le son Ã  la validation d'un drapeau///////////////////////////
 function lireSon(){
@@ -584,4 +600,62 @@ function lireSon(){
         sonValidation.play();
 }
 //////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+//FONCTION CALCUL SCORE POUR CHAQUE PAYS///////////////////////////////////////////
+var NbdeClicFrance=0;         
+var tempsOptimalFrance="0:0:8";
+var tempsRealiseFrance ;
+function calculScoreFrance(){
+    if(tempsRealiseFrance<tempsOptimalFrance && NbdeClicFrance<10){score+=3;}
+    else if(tempsRealiseFrance+''<tempsOptimalFrance){score+=2;}
+    else{score+=1;}
+    document.getElementById('spanScore').textContent="Score : "+score;       
+}
+var NbdeClicBelgique=0;         
+var tempsOptimalBelgique="0:0:7";
+var tempsRealiseBelgique ;
+function calculScoreBelgique(){
+    if(tempsRealiseBelgique<tempsOptimalBelgique && NbdeClicBelgique<9){score+=3;}
+    else if(tempsRealiseBelgique+''<tempsOptimalBelgique){score+=2;}
+    else{score+=1;}
+    document.getElementById('spanScore').textContent="Score : "+score;       
+}
+var NbdeClicAllemagne=0;         
+var tempsOptimalAllemagne="0:0:5";
+var tempsRealiseAllemagne ;
+function calculScoreAllemagne(){
+    if(tempsRealiseAllemagne<tempsOptimalAllemagne && NbdeClicAllemagne<7){score+=3;}
+    else if(tempsRealiseAllemagne+''<tempsOptimalAllemagne){score+=2;}
+    else{score+=1;}
+    document.getElementById('spanScore').textContent="Score : "+score;       
+}
+var NbdeClicHolland=0;         
+var tempsOptimalHolland="0:0:8";
+var tempsRealiseHolland ;
+function calculScoreHolland(){
+    if(tempsRealiseHolland<tempsOptimalHolland && NbdeClicHolland<10){score+=3;}
+    else if(tempsRealiseHolland+''<tempsOptimalHolland){score+=2;}
+    else{score+=1;}
+    document.getElementById('spanScore').textContent="Score : "+score;       
+}
+var NbdeClicPologne=0;         
+var tempsOptimalPologne="0:0:5";
+var tempsRealisePologne ;
+function calculScorePologne(){
+    if(tempsRealisePologne<tempsOptimalPologne && NbdeClicPologne<7){score+=3;}
+    else if(tempsRealisePologne+''<tempsOptimalPologne){score+=2;}
+    else{score+=1;}
+    document.getElementById('spanScore').textContent="Score : "+score;       
+}
+var NbdeClicTcheque=0;         
+var tempsOptimalTcheque="0:0:5";
+var tempsRealiseTcheque ;
+function calculScoreTcheque(){
+    if(tempsRealiseTcheque<tempsOptimalTcheque && NbdeClicTcheque<7){score+=3;}
+    else if(tempsRealiseTcheque+''<tempsOptimalTcheque){score+=2;}
+    else{score+=1;}
+    document.getElementById('spanScore').textContent="Score : "+score;       
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
 });//windows on load fonction

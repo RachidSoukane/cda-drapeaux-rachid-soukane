@@ -9,9 +9,18 @@
 <body id="masqueMoi">
     <div id="Jeu">
         <div id="enTete">
-            <span id="spanLeft">Level 1/6</span>
-            <span id="spanScore">Score : </span>               
-            <span id="spanRight">Nombre de clics : 0</span>
+            <div id="enTete1">
+                <span id="spanLeft">Level 1/6</span>
+            </div>
+            <div id="enTete2">
+                <span id="spanScore">Score : 0</span> 
+            </div>
+            <div id="enTete3">
+                <span id="spanRight">Nombre de clics : 0</span>
+            </div>
+            
+                          
+            
         </div>
         
         <div id="timer">                 
@@ -35,21 +44,56 @@
             <canvas id="flagRight"></canvas>         
         </div>
         <p id="cook">Emplacement Cookie</p>
-        <audio id="demo" src="hymne-national-francais.mp3"></audio>
-        <div id="musicPlayer">
-          <button class="music" onclick="document.getElementById('demo').play()">Play la musique </button>
-          <button class="music" onclick="document.getElementById('demo').pause()">Pause la musique</button>
-          <button class="music" onclick="document.getElementById('demo').volume+=0.1"> Volume +</button>
-          <button class="music" onclick="document.getElementById('demo').volume-=0.1"> Volume -</button>
+        <audio id="HymneFrance" src="hymne-national-francais.mp3"></audio>
+        <audio id="HymneBelgique" src="la-brabanconne.mp3"></audio>
+        <audio id="HymneAllemagne" src="GermanAnthem.mp3"></audio>
+        <audio id="HymnePaysBas" src="hymne-neerlandaisholland-anthem.mp3"></audio>
+        <audio id="HymnePologne" src="hymne-polonais.mp3"></audio>
+        <audio id="HymneTcheque" src="hymne-national-de-la-republique-tcheque.mp3"></audio>
+        <div id="musicPlayerFrance" >
+          <button class="music" onclick="document.getElementById('HymneFrance').play()">Play la musique </button>
+          <button class="music" onclick="document.getElementById('HymneFrance').pause()">Pause la musique</button>
+          <button class="music" onclick="document.getElementById('HymneFrance').volume+=0.1"> Volume +</button>
+          <button class="music" onclick="document.getElementById('HymneFrance').volume-=0.1"> Volume -</button>
         </div>
+        <div id="musicPlayerBelgique"style="display: none;">
+            <button class="music" onclick="document.getElementById('HymneBelgique').play()">Play la musique </button>
+            <button class="music" onclick="document.getElementById('HymneBelgique').pause()">Pause la musique</button>
+            <button class="music" onclick="document.getElementById('HymneBelgique').volume+=0.1"> Volume +</button>
+            <button class="music" onclick="document.getElementById('HymneBelgique').volume-=0.1"> Volume -</button>
+          </div>
+          <div id="musicPlayerAllemagne"style="display: none;">
+            <button class="music" onclick="document.getElementById('HymneAllemagne').play()">Play la musique </button>
+            <button class="music" onclick="document.getElementById('HymneAllemagne').pause()">Pause la musique</button>
+            <button class="music" onclick="document.getElementById('HymneAllemagne').volume+=0.1"> Volume +</button>
+            <button class="music" onclick="document.getElementById('HymneAllemagne').volume-=0.1"> Volume -</button>
+          </div>
+          <div id="musicPlayerPayBas"style="display: none;">
+            <button class="music" onclick="document.getElementById('HymnePaysBas').play()">Play la musique </button>
+            <button class="music" onclick="document.getElementById('HymnePaysBas').pause()">Pause la musique</button>
+            <button class="music" onclick="document.getElementById('HymnePaysBas').volume+=0.1"> Volume +</button>
+            <button class="music" onclick="document.getElementById('HymnePaysBas').volume-=0.1"> Volume -</button>
+          </div>
+          <div id="musicPlayerPologne"style="display: none;">
+            <button class="music" onclick="document.getElementById('HymnePologne').play()">Play la musique </button>
+            <button class="music" onclick="document.getElementById('HymnePologne').pause()">Pause la musique</button>
+            <button class="music" onclick="document.getElementById('HymnePologne').volume+=0.1"> Volume +</button>
+            <button class="music" onclick="document.getElementById('HymnePologne').volume-=0.1"> Volume -</button>
+          </div>
+          <div id="musicPlayerTcheque"style="display: none;">
+            <button class="music" onclick="document.getElementById('HymneTcheque').play()">Play la musique </button>
+            <button class="music" onclick="document.getElementById('HymneTcheque').pause()">Pause la musique</button>
+            <button class="music" onclick="document.getElementById('HymneTcheque').volume+=0.1"> Volume +</button>
+            <button class="music" onclick="document.getElementById('HymneTcheque').volume-=0.1"> Volume -</button>
+          </div>
     </div>
     <div id="popup">
         <div class="button_container">
             <button id="button_modal">
-                <p id="p1">Cliquez ici pour Démarrerr</p>
+                <p id="p1">Cliquez ici pour Démarrer!!!</p>
             </button>
             <div id="modal">
-                <h1>Hello World!</h1>
+                <h1>Jeu des Drapeaux!</h1>
                 <h3>Bienvenue dans ce jeu!</h3>
                 <p style="font-size: 18px;">Le but du jeu est de valider<br>
                     chaque niveau en trouvant les<br>

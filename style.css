@@ -15,6 +15,7 @@ html{
 body{
    /* flex-direction: column;*/
    width: 80%;
+   
     
 }
 
@@ -23,7 +24,7 @@ div{
     border: 5px;
     border-radius: 5px;
     border-color: #610600;
-    color: #ffffff;
+    color: #50ff08;
 }
 h1,p, h3{
     text-align: center;
@@ -34,13 +35,15 @@ h1,p, h3{
 #Jeu{
   border: solid;
   border-radius: 20px;
-  border-color: #92b1ff;
-  background-color: #6b5b95;
+  border-color: #fcff37;
+  background-color: #466767;
   height: fit-content;
 }
 
 #enTete{
-    text-align-last: center;
+  display: flex;
+  /* text-align-last: justify; */
+  justify-content: space-evenly;
 
 }
 #canvas{
@@ -99,14 +102,29 @@ h1,p, h3{
     color:#0b00a3;
 }
 #popup2{
-  backface-visibility: hidden;
-  color:#0b00a3;
+  color: #0b00a3;
   border: outset;
   background-color: darkslateblue;
   border-radius: 30px;
-  margin-top: 438px;
+  margin-top: 403px;
   height: 430px;
   display:none;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 }
 .button_container{
     text-align: center;
@@ -130,7 +148,11 @@ h1,p, h3{
   font-family: Arial, Helvetica, sans-serif;
   border: none;
   cursor: pointer;
+  text-align-last: center;
   /*background: top;*/
+}
+#modal2{
+  text-align-last: center;
 }
 
  
@@ -153,18 +175,17 @@ h1,p, h3{
     color: antiquewhite;
 
  }
- #musicPlayer{
+ #musicPlayerFrance{
   display: grid;
  }
  #timer{
-    text-align-last: center;
-    color: whitesmoke;
-    background-color: #0b00a3;
-
-    width: 85%;
-    margin: auto;
-    margin-top: 20%;
-    font-size: x-large;
+  text-align-last: center;
+  color: whitesmoke;
+  background-color: #353b48;
+  width: 85%;
+  margin: auto;
+  margin-top: 20%;
+  font-size: x-large;
 }
 
 
@@ -206,7 +227,7 @@ h1,p, h3{
       background-color: #e1b12c;
       text-align-last: center;
       border-radius: 10px;
-      margin-top: -500px;
+      margin-top: -304px;
   }
 }
 
