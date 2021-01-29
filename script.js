@@ -226,8 +226,8 @@ window.addEventListener('load', function(){
 
         NbdeClicTcheque=NbClickCumule() -1;
         tempsRealiseTcheque =document.getElementById('spanTimerTcheque').textContent;
-        stopChronoTcheque();    
         calculScoreTcheque();
+        stopChronoTcheque();    
 
         //////////////////////////////Fin de Partie
         changerDrapeauFinal();//Pour mettre fin à la partie et Chrono
@@ -389,11 +389,11 @@ window.addEventListener('load', function(){
         var FinalScore= document.getElementById('ScoreFinale');
         var FinalTime= document.getElementById('DureeTotale');
         var FinalClic= document.getElementById('TotalClic');
-        var NombreClicMinimum =34;
+        var NombreClicMinimum =53;
         var AfficheNBClicFinal = NbClickCumule() -1;
-        var scoreTotal = ((NombreClicMinimum)/AfficheNBClicFinal)*100;
+        var scoreTotal = score;
 
-        FinalScore.textContent="Score :" + Math.round(scoreTotal) + "\%";
+        FinalScore.textContent="Score :" + Math.round(scoreTotal) + " points";
         FinalTime.textContent="Durée :"+horlogeTimer+' secondes';
         FinalClic.textContent="Nombre de Clics :"+(AfficheNBClicFinal);                
         
